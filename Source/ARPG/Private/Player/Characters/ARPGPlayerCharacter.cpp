@@ -15,6 +15,7 @@
 #include "AbilitySystem/Attributes/ARPGAttributeSet.h"
 #include "AbilitySystem/Abilities/ARPGGameplayAbility.h"
 #include "GameplayAbilitySpec.h"
+#include "AbilitySystem/Abilities/ARPGJumpAbility.h"
 
 AARPGPlayerCharacter::AARPGPlayerCharacter()
 {
@@ -78,8 +79,8 @@ void AARPGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
 		// Jumping
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &AARPGPlayerCharacter::DoJumpStart);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &AARPGPlayerCharacter::DoJumpEnd);;
 
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AARPGPlayerCharacter::Move);
@@ -149,8 +150,12 @@ void AARPGPlayerCharacter::DoLook(float Yaw, float Pitch)
 
 void AARPGPlayerCharacter::DoJumpStart()
 {
-	// signal the character to jump
-	Jump();
+	if (!AbilitySystemComponent)
+	{
+		return;
+	}
+
+	AbilitySystemComponent->TryActivateAbilityByClass(UARPGJumpAbility::StaticClass());
 }
 
 void AARPGPlayerCharacter::DoJumpEnd()
