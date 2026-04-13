@@ -45,6 +45,38 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
 	FGameplayAttributeData MaxMana;
 	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, MaxMana)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData StaminaRegenRate;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, StaminaRegenRate)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData StaminaRegenDelay;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, StaminaRegenDelay)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData ManaRegenRate;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, ManaRegenRate)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData ManaRegenDelay;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, ManaRegenDelay)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData PhysicalPower;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, PhysicalPower)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData MagicPower;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, MagicPower)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData PhysicalDefense;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, PhysicalDefense)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData MagicDefense;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, MagicDefense)
 	
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	
