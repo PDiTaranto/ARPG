@@ -16,6 +16,7 @@ struct FInputActionValue;
 class UAbilitySystemComponent;
 class UARPGAbilitySystemComponent;
 class UARPGAttributeSet;
+class UARPGGameplayAbility;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
@@ -71,6 +72,11 @@ protected:
 	virtual void BeginPlay() override;
 
 	void InitializeAbilitySystem();
+
+	UPROPERTY(EditDefaultsOnly, Category = "ARPG|Abilities")
+	TArray<TSubclassOf<UARPGGameplayAbility>> StartupAbilities;
+
+	void GrantStartupAbilities();
 
 
 protected:

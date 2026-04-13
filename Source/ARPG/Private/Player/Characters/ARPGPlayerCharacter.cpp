@@ -13,6 +13,8 @@
 #include "ARPG.h"
 #include "AbilitySystem/Components/ARPGAbilitySystemComponent.h"
 #include "AbilitySystem/Attributes/ARPGAttributeSet.h"
+#include "AbilitySystem/Abilities/ARPGGameplayAbility.h"
+#include "GameplayAbilitySpec.h"
 
 AARPGPlayerCharacter::AARPGPlayerCharacter()
 {
@@ -67,6 +69,7 @@ void AARPGPlayerCharacter::InitializeAbilitySystem()
 	if (!AbilitySystemComponent) return;
 
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	GrantStartupAbilities();
 }
 
 void AARPGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -154,4 +157,23 @@ void AARPGPlayerCharacter::DoJumpEnd()
 {
 	// signal the character to stop jumping
 	StopJumping();
+}
+
+void AARPGPlayerCharacter::GrantStartupAbilities()
+{
+	if (!AbilitySystemComponent)
+	{
+		return;
+	}
+
+	for (const TSubclassOf<UARPGGameplayAbility>& AbilityClass : StartupAbilities)
+	{
+		if (!AbilityClass)
+		{
+			continue;
+		}
+
+		FGameplayAbilitySpec AbilitySpec(AbilityClass, 1);
+		AbilitySystemComponent->GiveAbility(AbilitySpec);
+	}
 }
