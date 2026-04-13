@@ -4,7 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
+#include "AbilitySystemComponent.h"
 #include "ARPGAttributeSet.generated.h"
+
+#define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
+GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
+GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
+GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
+GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 /**
  * 
@@ -13,5 +20,30 @@ UCLASS()
 class ARPG_API UARPGAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData Health;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, Health)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, MaxHealth)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData Stamina;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, Stamina)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData MaxStamina;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, MaxStamina)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData Mana;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, Mana)
+
+	UPROPERTY(BlueprintReadOnly, Category = "ARPG|Attributes")
+	FGameplayAttributeData MaxMana;
+	ATTRIBUTE_ACCESSORS(UARPGAttributeSet, MaxMana)
 	
 };
