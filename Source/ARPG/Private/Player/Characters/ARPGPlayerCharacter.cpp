@@ -55,6 +55,20 @@ AARPGPlayerCharacter::AARPGPlayerCharacter()
 	AttributeSet = CreateDefaultSubobject<UARPGAttributeSet>(TEXT("AttributeSet"));
 }
 
+void AARPGPlayerCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	InitializeAbilitySystem();
+}
+
+void AARPGPlayerCharacter::InitializeAbilitySystem()
+{
+	if (!AbilitySystemComponent) return;
+
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}
+
 void AARPGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// Set up action bindings

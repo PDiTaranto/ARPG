@@ -67,6 +67,11 @@ public:
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
+protected:
+	virtual void BeginPlay() override;
+
+	void InitializeAbilitySystem();
+
 
 protected:
 
