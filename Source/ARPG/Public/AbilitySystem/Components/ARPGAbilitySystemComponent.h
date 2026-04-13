@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
-#include "ARPGPbilitySystemComponent.generated.h"
+#include "ARPGAbilitySystemComponent.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class ARPG_API UARPGPbilitySystemComponent : public UAbilitySystemComponent
+class ARPG_API UARPGAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
 	

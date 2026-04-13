@@ -11,6 +11,8 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "ARPG.h"
+#include "AbilitySystem/Components/ARPGAbilitySystemComponent.h"
+#include "AbilitySystem/Attributes/ARPGAttributeSet.h"
 
 AARPGPlayerCharacter::AARPGPlayerCharacter()
 {
@@ -48,6 +50,9 @@ AARPGPlayerCharacter::AARPGPlayerCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	AbilitySystemComponent = CreateDefaultSubobject<UARPGAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	AttributeSet = CreateDefaultSubobject<UARPGAttributeSet>(TEXT("AttributeSet"));
 }
 
 void AARPGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -108,6 +113,11 @@ void AARPGPlayerCharacter::DoMove(float Right, float Forward)
 		AddMovementInput(ForwardDirection, Forward);
 		AddMovementInput(RightDirection, Right);
 	}
+}
+
+UAbilitySystemComponent* AARPGPlayerCharacter::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
 }
 
 void AARPGPlayerCharacter::DoLook(float Yaw, float Pitch)
