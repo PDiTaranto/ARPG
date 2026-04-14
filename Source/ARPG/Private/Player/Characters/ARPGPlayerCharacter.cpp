@@ -82,8 +82,12 @@ void AARPGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
 		// Jumping
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &AARPGPlayerCharacter::DoJumpStart);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &AARPGPlayerCharacter::DoJumpEnd);;
+		const UInputAction* JumpInputAction = GetInputActionByTag(FARPGGameplayTags::Get().InputTag_Jump, true);
+		if (JumpInputAction)
+		{
+			EnhancedInputComponent->BindAction(JumpInputAction, ETriggerEvent::Started, this, &AARPGPlayerCharacter::DoJumpStart);
+			EnhancedInputComponent->BindAction(JumpInputAction, ETriggerEvent::Completed, this, &AARPGPlayerCharacter::DoJumpEnd);
+		}
 
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AARPGPlayerCharacter::Move);

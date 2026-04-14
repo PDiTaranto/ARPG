@@ -41,11 +41,7 @@ class AARPGPlayerCharacter : public ACharacter, public IAbilitySystemInterface
 	UCameraComponent* FollowCamera;
 	
 protected:
-
-	/** Jump Input Action */
-	UPROPERTY(EditAnywhere, Category="Input")
-	UInputAction* JumpAction;
-
+	
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MoveAction;
