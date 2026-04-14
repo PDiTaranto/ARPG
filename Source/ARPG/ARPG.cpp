@@ -2,7 +2,20 @@
 
 #include "ARPG.h"
 #include "Modules/ModuleManager.h"
+#include "Input/Tags/ARPGGameplayTags.h"
 
-IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, ARPG, "ARPG" );
+class FARPGModule : public FDefaultGameModuleImpl
+{
+	virtual void StartupModule() override
+	{
+		FARPGGameplayTags::InitializeNativeGameplayTags();
+	}
+
+	virtual void ShutdownModule() override
+	{
+	}
+};
+
+IMPLEMENT_PRIMARY_GAME_MODULE(FARPGModule, ARPG, "ARPG");
 
 DEFINE_LOG_CATEGORY(LogARPG)
