@@ -42,18 +42,6 @@ class AARPGPlayerCharacter : public ACharacter, public IAbilitySystemInterface
 	
 protected:
 	
-	/** Move Input Action */
-	UPROPERTY(EditAnywhere, Category="Input")
-	UInputAction* MoveAction;
-
-	/** Look Input Action */
-	UPROPERTY(EditAnywhere, Category="Input")
-	UInputAction* LookAction;
-
-	/** Mouse Look Input Action */
-	UPROPERTY(EditAnywhere, Category="Input")
-	UInputAction* MouseLookAction;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ARPG|Abilities")
 	TObjectPtr<UARPGAbilitySystemComponent> AbilitySystemComponent;
 

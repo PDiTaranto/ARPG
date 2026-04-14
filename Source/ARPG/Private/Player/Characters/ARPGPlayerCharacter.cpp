@@ -90,11 +90,18 @@ void AARPGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 		}
 
 		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AARPGPlayerCharacter::Move);
-		EnhancedInputComponent->BindAction(MouseLookAction, ETriggerEvent::Triggered, this, &AARPGPlayerCharacter::Look);
+		const UInputAction* MoveInputAction = GetInputActionByTag(FARPGGameplayTags::Get().InputTag_Move, true);
+		if (MoveInputAction)
+		{
+			EnhancedInputComponent->BindAction(MoveInputAction, ETriggerEvent::Triggered, this, &AARPGPlayerCharacter::Move);
+		}
 
 		// Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AARPGPlayerCharacter::Look);
+		const UInputAction* LookInputAction = GetInputActionByTag(FARPGGameplayTags::Get().InputTag_Look, true);
+		if (LookInputAction)
+		{
+			EnhancedInputComponent->BindAction(LookInputAction, ETriggerEvent::Triggered, this, &AARPGPlayerCharacter::Look);
+		}
 	}
 	else
 	{
