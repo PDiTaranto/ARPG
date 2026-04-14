@@ -18,6 +18,8 @@ class UARPGAbilitySystemComponent;
 class UARPGAttributeSet;
 class UARPGGameplayAbility;
 
+class UARPGInputConfig;
+
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 /**
@@ -59,7 +61,10 @@ protected:
 	TObjectPtr<UARPGAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ARPG|Abilities")
-	TObjectPtr<UARPGAttributeSet> AttributeSet;
+	TObjectPtr<UARPGAttributeSet> AttributeSet;	
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "ARPG|Input")
+	TObjectPtr<const UARPGInputConfig> InputConfig;
 
 public:
 
