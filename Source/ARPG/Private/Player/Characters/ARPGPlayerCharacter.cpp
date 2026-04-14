@@ -64,6 +64,8 @@ void AARPGPlayerCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	InitializeAbilitySystem();
+
+	ValidateInputConfig();
 }
 
 void AARPGPlayerCharacter::InitializeAbilitySystem()
@@ -194,4 +196,35 @@ const UInputAction* AARPGPlayerCharacter::GetInputActionByTag(const FGameplayTag
 	}
 
 	return InputConfig->FindInputActionByTag(InputTag, bLogNotFound);
+}
+
+bool AARPGPlayerCharacter::HasValidInputActionForTag(const FGameplayTag& InputTag) const
+{
+	return GetInputActionByTag(InputTag, false) != nullptr;
+}
+
+void AARPGPlayerCharacter::ValidateInputConfig() const
+{
+	if (!InputConfig)
+	{
+		UE_LOG(LogARPG, Warning, TEXT("PlayerCharacter [%s] has no InputConfig assigned."), *GetNameSafe(this));
+		return;
+	}
+
+	const FARPGGameplayTags& GameplayTags = FARPGGameplayTags::Get();
+
+	if (!HasValidInputActionForTag(GameplayTags.InputTag_Move))
+	{
+		UE_LOG(LogARPG, Warning, TEXT("InputConfig [%s] is missing InputTag.Move"), *GetNameSafe(InputConfig));
+	}
+
+	if (!HasValidInputActionForTag(GameplayTags.InputTag_Look))
+	{
+		UE_LOG(LogARPG, Warning, TEXT("InputConfig [%s] is missing InputTag.Look"), *GetNameSafe(InputConfig));
+	}
+
+	if (!HasValidInputActionForTag(GameplayTags.InputTag_Jump))
+	{
+		UE_LOG(LogARPG, Warning, TEXT("InputConfig [%s] is missing InputTag.Jump"), *GetNameSafe(InputConfig));
+	}
 }

@@ -85,7 +85,9 @@ protected:
 	void GrantStartupAbilities();
 
 protected:
-	const UInputAction* GetInputActionByTag(const FGameplayTag& InputTag, bool bLogNotFound = false) const;
+	const UInputAction* GetInputActionByTag(const FGameplayTag& InputTag, bool bLogNotFound = false) const;protected:
+	void ValidateInputConfig() const;
+	bool HasValidInputActionForTag(const FGameplayTag& InputTag) const;
 
 
 protected:
