@@ -121,7 +121,7 @@ void AARPGPlayerCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
-
+	LastMovementInput = MovementVector;
 	// route the input
 	DoMove(MovementVector.X, MovementVector.Y);
 }
@@ -260,4 +260,27 @@ void AARPGPlayerCharacter::ValidateInputConfig() const
 	{
 		UE_LOG(LogARPG, Warning, TEXT("InputConfig [%s] is missing InputTag.Jump"), *GetNameSafe(InputConfig));
 	}
+}
+
+FVector AARPGPlayerCharacter::GetDesiredMovementDirection() const
+{
+	if (GetController() == nullptr)
+	{
+		return GetActorForwardVector();
+	}
+
+	const FRotator Rotation = GetController()->GetControlRotation();
+	const FRotator YawRotation(0.0f, Rotation.Yaw, 0.0f);
+
+	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
+	FVector DesiredDirection = (ForwardDirection * LastMovementInput.Y) + (RightDirection * LastMovementInput.X);
+
+	if (DesiredDirection.IsNearlyZero())
+	{
+		return GetActorForwardVector();
+	}
+
+	return DesiredDirection.GetSafeNormal();
 }

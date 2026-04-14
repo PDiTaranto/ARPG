@@ -51,6 +51,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "ARPG|Input")
 	TObjectPtr<const UARPGInputConfig> InputConfig;
 
+protected:
+	FVector2D LastMovementInput = FVector2D::ZeroVector;
+
+public:
+	FVector GetDesiredMovementDirection() const;
+
 public:
 
 	/** Constructor */

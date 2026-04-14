@@ -29,8 +29,8 @@ void UARPGDodgeAbility::ActivateAbility(
 		return;
 	}
 
-	const FVector ForwardDirection = PlayerCharacter->GetActorForwardVector();
-	PlayerCharacter->LaunchCharacter(ForwardDirection * 600.0f, true, true);
+	const FVector DodgeDirection = PlayerCharacter->GetDesiredMovementDirection();
+	PlayerCharacter->LaunchCharacter(DodgeDirection * 600.0f, true, true);
 
 	EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
 }
