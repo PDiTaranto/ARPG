@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Created by Pablo Di Taranto
 
 #include "Player/Characters/ARPGPlayerCharacter.h"
 #include "Engine/LocalPlayer.h"

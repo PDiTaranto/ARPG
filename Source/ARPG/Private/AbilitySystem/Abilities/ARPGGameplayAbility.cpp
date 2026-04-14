@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Created by Pablo Di Taranto
 
 
 #include "AbilitySystem/Abilities/ARPGGameplayAbility.h"

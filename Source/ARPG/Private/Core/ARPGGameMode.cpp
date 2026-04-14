@@ -1,4 +1,4 @@
-﻿// Copyright Epic Games, Inc. All Rights Reserved.
+﻿// Created by Pablo Di Taranto
 
 #include "Core/ARPGGameMode.h"
 

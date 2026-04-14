@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Created by Pablo Di Taranto
 
 #include "AbilitySystem/Abilities/ARPGDodgeAbility.h"
 #include "Input/Tags/ARPGGameplayTags.h"
