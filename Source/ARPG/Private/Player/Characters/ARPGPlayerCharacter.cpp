@@ -15,7 +15,7 @@
 #include "AbilitySystem/Attributes/ARPGAttributeSet.h"
 #include "AbilitySystem/Abilities/ARPGGameplayAbility.h"
 #include "GameplayAbilitySpec.h"
-#include "AbilitySystem/Abilities/ARPGJumpAbility.h"
+#include "Input/Tags/ARPGGameplayTags.h"
 
 AARPGPlayerCharacter::AARPGPlayerCharacter()
 {
@@ -155,7 +155,9 @@ void AARPGPlayerCharacter::DoJumpStart()
 		return;
 	}
 
-	AbilitySystemComponent->TryActivateAbilityByClass(UARPGJumpAbility::StaticClass());
+	const FGameplayTag JumpInputTag = FARPGGameplayTags::Get().InputTag_Jump;
+
+	AbilitySystemComponent->TryActivateAbilityByInputTag(JumpInputTag);
 }
 
 void AARPGPlayerCharacter::DoJumpEnd()

@@ -30,5 +30,5 @@ protected:
 	FGameplayTag AbilityInputTag;
 
 public:
-	const FGameplayTag& GetAbilityInputTag() const { return AbilityInputTag; }
+	virtual FGameplayTag GetAbilityInputTag() const { return AbilityInputTag; }
 };

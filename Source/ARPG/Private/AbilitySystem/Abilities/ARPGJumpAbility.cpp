@@ -2,11 +2,11 @@
 
 #include "AbilitySystem/Abilities/ARPGJumpAbility.h"
 #include "Player/Characters/ARPGPlayerCharacter.h"
+#include "Input/Tags/ARPGGameplayTags.h"
 
 UARPGJumpAbility::UARPGJumpAbility()
 {
 	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
-	AbilityInputTag = FARPGGameplayTags::Get().InputTag_Jump;
 }
 
 void UARPGJumpAbility::ActivateAbility(
@@ -23,7 +23,6 @@ void UARPGJumpAbility::ActivateAbility(
 		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
 		return;
 	}
-
 	PlayerCharacter->Jump();
 
 	EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
@@ -37,4 +36,9 @@ void UARPGJumpAbility::EndAbility(
 	bool bWasCancelled)
 {
 	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
+}
+
+FGameplayTag UARPGJumpAbility::GetAbilityInputTag() const
+{
+	return FARPGGameplayTags::Get().InputTag_Jump;
 }
