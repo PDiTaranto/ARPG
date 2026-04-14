@@ -16,4 +16,10 @@ public:
 	UARPGDodgeAbility();
 
 	virtual FGameplayTag GetAbilityInputTag() const override;
+
+	virtual void ActivateAbility(
+	const FGameplayAbilitySpecHandle Handle,
+	const FGameplayAbilityActorInfo* ActorInfo,
+	const FGameplayAbilityActivationInfo ActivationInfo,
+	const FGameplayEventData* TriggerEventData) override;
 };
