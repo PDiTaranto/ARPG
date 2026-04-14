@@ -105,6 +105,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
 
+protected:
+	void DoDodgeStart();
+	void DoDodgeEnd();
+
 public:
 
 	/** Returns CameraBoom subobject **/

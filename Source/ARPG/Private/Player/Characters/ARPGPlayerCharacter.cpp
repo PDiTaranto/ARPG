@@ -102,6 +102,14 @@ void AARPGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 		{
 			EnhancedInputComponent->BindAction(LookInputAction, ETriggerEvent::Triggered, this, &AARPGPlayerCharacter::Look);
 		}
+
+		//Dodge		
+		const UInputAction* DodgeInputAction = GetInputActionByTag(FARPGGameplayTags::Get().InputTag_Dodge, true);
+		if (DodgeInputAction)
+		{
+			EnhancedInputComponent->BindAction(DodgeInputAction, ETriggerEvent::Started, this, &AARPGPlayerCharacter::DoDodgeStart);
+			EnhancedInputComponent->BindAction(DodgeInputAction, ETriggerEvent::Completed, this, &AARPGPlayerCharacter::DoDodgeEnd);
+		}
 	}
 	else
 	{
@@ -178,6 +186,20 @@ void AARPGPlayerCharacter::DoJumpEnd()
 {
 	// signal the character to stop jumping
 	StopJumping();
+}
+
+void AARPGPlayerCharacter::DoDodgeStart()
+{
+	if (!AbilitySystemComponent)
+	{
+		return;
+	}
+
+	AbilitySystemComponent->TryActivateAbilityByInputTag(FARPGGameplayTags::Get().InputTag_Dodge);
+}
+
+void AARPGPlayerCharacter::DoDodgeEnd()
+{
 }
 
 void AARPGPlayerCharacter::GrantStartupAbilities()
