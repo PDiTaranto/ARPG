@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "GameplayTagContainer.h"
 #include "ARPGGameplayAbility.generated.h"
 
 class AARPGPlayerCharacter;
@@ -23,5 +24,11 @@ protected:
 	AARPGPlayerCharacter* GetARPGPlayerCharacterFromActorInfo() const;
 	AARPGPlayerController* GetARPGPlayerControllerFromActorInfo() const;
 	UARPGAbilitySystemComponent* GetARPGAbilitySystemComponentFromActorInfo() const;
-	const UARPGAttributeSet* GetARPGAttributeSetFromActorInfo() const;	
+	const UARPGAttributeSet* GetARPGAttributeSetFromActorInfo() const;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "ARPG|Input")
+	FGameplayTag AbilityInputTag;
+
+public:
+	const FGameplayTag& GetAbilityInputTag() const { return AbilityInputTag; }
 };

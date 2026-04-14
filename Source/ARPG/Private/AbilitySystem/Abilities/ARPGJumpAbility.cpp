@@ -6,6 +6,7 @@
 UARPGJumpAbility::UARPGJumpAbility()
 {
 	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+	AbilityInputTag = FARPGGameplayTags::Get().InputTag_Jump;
 }
 
 void UARPGJumpAbility::ActivateAbility(

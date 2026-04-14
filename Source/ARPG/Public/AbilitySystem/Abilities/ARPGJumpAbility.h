@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystem/Abilities/ARPGGameplayAbility.h"
+#include "Input/Tags/ARPGGameplayTags.h"
 #include "ARPGJumpAbility.generated.h"
 
 UCLASS()
