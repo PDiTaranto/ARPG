@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
 #include "AbilitySystemInterface.h"
+#include "GameplayTagContainer.h"
 #include "ARPGPlayerCharacter.generated.h"
 
 class USpringArmComponent;
@@ -82,6 +83,9 @@ protected:
 	TArray<TSubclassOf<UARPGGameplayAbility>> StartupAbilities;
 
 	void GrantStartupAbilities();
+
+protected:
+	const UInputAction* GetInputActionByTag(const FGameplayTag& InputTag, bool bLogNotFound = false) const;
 
 
 protected:

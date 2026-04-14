@@ -16,6 +16,7 @@
 #include "AbilitySystem/Abilities/ARPGGameplayAbility.h"
 #include "GameplayAbilitySpec.h"
 #include "Input/Tags/ARPGGameplayTags.h"
+#include "Input/Configs/ARPGInputConfig.h"
 
 AARPGPlayerCharacter::AARPGPlayerCharacter()
 {
@@ -183,4 +184,14 @@ void AARPGPlayerCharacter::GrantStartupAbilities()
 		FGameplayAbilitySpec AbilitySpec(AbilityClass, 1);
 		AbilitySystemComponent->GiveAbility(AbilitySpec);
 	}
+}
+
+const UInputAction* AARPGPlayerCharacter::GetInputActionByTag(const FGameplayTag& InputTag, bool bLogNotFound) const
+{
+	if (!InputConfig)
+	{
+		return nullptr;
+	}
+
+	return InputConfig->FindInputActionByTag(InputTag, bLogNotFound);
 }
